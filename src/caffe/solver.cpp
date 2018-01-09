@@ -59,6 +59,16 @@ void Solver<Dtype>::Init(const SolverParameter& param) {
   current_step_ = 0;
 }
 
+template<typename Dtype>
+void Solver<Dtype>::UpdateSolverParams(const SolverParameter& param) {
+  param_ = param;
+}
+
+template<typename Dtype>
+SolverParameter Solver<Dtype>::GetSolverParams() {
+  return param_;
+}
+
 template <typename Dtype>
 void Solver<Dtype>::InitTrainNet() {
   const int num_train_nets = param_.has_net() + param_.has_net_param() +
