@@ -557,7 +557,7 @@ BOOST_PYTHON_MODULE(_caffe) {
                        bp::make_function(&SolverParameter::type,
                        bp::return_value_policy<bp::copy_const_reference>()),
                        static_cast<void (SolverParameter::*)(const string&)>(
-                               &SolverParameter::set_type))
+                               &SolverParameter::set_type));
 
 
   bp::class_<SGDSolver<Dtype>, bp::bases<Solver<Dtype> >,
