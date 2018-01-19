@@ -83,6 +83,10 @@ bool UpgradeSolverAsNeeded(const string& param_file, SolverParameter* param);
 void ReadSolverParamsFromTextFileOrDie(const string& param_file,
                                        SolverParameter* param);
 
+// Read parameters from a string into a SolverParameter proto message.
+void ReadSolverParamsFromStringOrDie(const string& param_string,
+                                       SolverParameter* param);
+
 }  // namespace caffe
 
 #endif   // CAFFE_UTIL_UPGRADE_PROTO_H_

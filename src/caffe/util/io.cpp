@@ -49,6 +49,11 @@ void WriteProtoToTextFile(const Message& proto, const char* filename) {
   close(fd);
 }
 
+bool ReadProtoFromString(const char* proto_string, Message* proto) {
+  bool success = google::protobuf::TextFormat::ParseFromString(proto_string, proto);
+  return success;
+}
+
 bool ReadProtoFromBinaryFile(const char* filename, Message* proto) {
   int fd = open(filename, O_RDONLY);
   CHECK_NE(fd, -1) << "File not found: " << filename;

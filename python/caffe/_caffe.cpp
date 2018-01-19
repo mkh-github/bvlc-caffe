@@ -202,6 +202,12 @@ Solver<Dtype>* GetSolverFromFile(const string& filename) {
   return SolverRegistry<Dtype>::CreateSolver(param);
 }
 
+Solver<Dtype>* GetSolverFromString(const string& paramstring) {
+  SolverParameter param;
+  ReadSolverParamsFromStringOrDie(paramstring, &param);
+  return SolverRegistry<Dtype>::CreateSolver(param);
+}
+
 struct NdarrayConverterGenerator {
   template <typename T> struct apply;
 };
@@ -579,6 +585,8 @@ BOOST_PYTHON_MODULE(_caffe) {
         "AdamSolver", bp::init<string>());
 
   bp::def("get_solver", &GetSolverFromFile,
+      bp::return_value_policy<bp::manage_new_object>());
+  bp::def("get_solver_from_string", &GetSolverFromString,
       bp::return_value_policy<bp::manage_new_object>());
 
   // vector wrappers for all the vector types we use

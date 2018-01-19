@@ -68,6 +68,26 @@ inline void WriteProtoToTextFile(const Message& proto, const string& filename) {
   WriteProtoToTextFile(proto, filename.c_str());
 }
 
+bool ReadProtoFromString(const char* proto_string, Message* proto);
+
+inline bool ReadProtoFromString(const string& proto_string, Message* proto) {
+  return ReadProtoFromString(proto_string.c_str(), proto);
+}
+
+inline void ReadProtoFromStringOrDie(const char* proto_string, Message* proto) {
+  CHECK(ReadProtoFromString(proto_string, proto));
+}
+
+inline void ReadProtoFromStringOrDie(const string& proto_string, Message* proto) {
+  ReadProtoFromStringOrDie(proto_string.c_str(), proto);
+}
+
+void WriteProtoToBinaryFile(const Message& proto, const char* filename);
+inline void WriteProtoToBinaryFile(
+    const Message& proto, const string& filename) {
+  WriteProtoToBinaryFile(proto, filename.c_str());
+}
+
 bool ReadProtoFromBinaryFile(const char* filename, Message* proto);
 
 inline bool ReadProtoFromBinaryFile(const string& filename, Message* proto) {
@@ -81,13 +101,6 @@ inline void ReadProtoFromBinaryFileOrDie(const char* filename, Message* proto) {
 inline void ReadProtoFromBinaryFileOrDie(const string& filename,
                                          Message* proto) {
   ReadProtoFromBinaryFileOrDie(filename.c_str(), proto);
-}
-
-
-void WriteProtoToBinaryFile(const Message& proto, const char* filename);
-inline void WriteProtoToBinaryFile(
-    const Message& proto, const string& filename) {
-  WriteProtoToBinaryFile(proto, filename.c_str());
 }
 
 bool ReadFileToDatum(const string& filename, const int label, Datum* datum);

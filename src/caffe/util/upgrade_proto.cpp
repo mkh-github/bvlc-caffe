@@ -1103,4 +1103,14 @@ void ReadSolverParamsFromTextFileOrDie(const string& param_file,
   UpgradeSolverAsNeeded(param_file, param);
 }
 
+void ReadSolverParamsFromStringOrDie(const string& param_string,
+                                       SolverParameter* param) {
+  CHECK(ReadProtoFromString(param_string, param))
+      << "Failed to parse SolverParameter string: " << param_string;
+// NOW WHAT?
+  //const string fake_filename="_fromstring";
+  //UpgradeSolverAsNeeded(fake_filename, param);
+}
+
+
 }  // namespace caffe
